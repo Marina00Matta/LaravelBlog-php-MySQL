@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\User;
+use App\Http\Requests\StorePostRequest;
 
 class PostController extends Controller
 {
@@ -11,6 +13,7 @@ class PostController extends Controller
     {
         
         $posts = Post::all();
+        
         return view('index',['posts'=>$posts]);
     }
 
@@ -31,23 +34,20 @@ class PostController extends Controller
     public function create()
    
     {
-
-    return view('create');
+        $users = User::all();
+        return view('create',['users' => $users]);
 
     }
 
-    public function store()
+    public function store(StorePostRequest $request)
     {
-        $request = request();
         Post::create([
             'title'=>$request->title,
             'description'=>$request->description,
+            'user_id' => $request->user_id,
         ]);
         return redirect()->route('posts.index');
     }
-
-
-
 
 
 }
