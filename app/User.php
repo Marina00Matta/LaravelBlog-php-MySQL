@@ -36,4 +36,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function getCreatedAtAttribute($value)
+    {
+       $carbon = new Carbon($value); 
+        return  $carbon->format('l jS \\of F Y h:i:s A');
+    }
 }
