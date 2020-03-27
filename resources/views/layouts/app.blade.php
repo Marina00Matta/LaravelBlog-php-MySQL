@@ -35,7 +35,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item active"><a class="nav-link text-grey" href="{{route('posts.index')}}">All Posts</a><span class = "sr-only">(current)</span>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
