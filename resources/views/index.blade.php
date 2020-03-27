@@ -27,6 +27,11 @@
     
 
       <td><a href="{{route('posts.show',['post'=> $post-> id])}}" class="btn btn-primary -5">View</a></td>
+      <td><a href="{{route('posts.edit',['post' => $post->id])}}" class="btn btn-warning">edit</a></td>
+     <td> <div class="col-2"><form method="POST"action="{{route('posts.show',['post' => $post->id])}}">
+             @csrf @method('delete')<button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure that you want to delete this post ?')">Delete </button></form></div>
+      </td>
+        
     </tr>
    @endforeach
    

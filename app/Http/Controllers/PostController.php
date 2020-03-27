@@ -32,12 +32,12 @@ class PostController extends Controller
     }
 
     public function create()
-   
     {
         $users = User::all();
         return view('create',['users' => $users]);
 
     }
+
 
     public function store(StorePostRequest $request)
     {
@@ -50,6 +50,41 @@ class PostController extends Controller
     }
 
 
+    public function edit(){
+        $request =request()->post;
+        $post=Post::find($request);
+        $users = User::all();
+        
+        
+
+        return view ('edit',[
+            'post' => $post,
+            'users' =>$users,
+
+        ]);
+
+
+     }
+
+     public function update(){
+        $postId =request()->post;
+        $post=Post::find($postId);
+         
+        $post->title=request()->title;
+        $post->description=request()->description;
+        $post->user_id=request()->user_id;
+        $post->save();
+
+        return redirect()->route('posts.index');
+     } 
+
+     public function delete(){
+        $postId =request()->post;
+        $post=Post::find($postId);
+         
+        $post->delete();
+        return redirect()->route('posts.index');
+     }
 }
 
 
